@@ -1,4 +1,3 @@
-"use client"
 import React from 'react'
 import Link from "next/link"
 import { getPages } from '@/sanity/sanity-utils';
@@ -21,20 +20,20 @@ export default async function RootLayout({
 
 
   return (
-    <html lang="en">
-      <body className="max-w-3xl mx-auto py-10">
-        <header className="flex items-center justify-between">
-          <Link href="/" className="">Alvaro Peña</Link>
-          <div className="flex items-center gap-5 text-sm text-gray-600">
-            {pages.map((page) => (
-              <Link key={page._id} href={`/${page.slug}`} className="hover:underline">{page.title}</Link>
-            ))}
-          </div>
-          <Link href="/projects">Projects</Link>
-          <Link href="/essays">Essays</Link>
-          <ModeToggle />
-        </header>
-        <ThemeProvider>
+    <html lang="en" suppressHydrationWarning>
+      <body className="">
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <header className="flex items-center justify-between">
+            <Link href="/" className="">Alvaro Peña</Link>
+            <div className="flex items-center gap-5 text-sm text-gray-600">
+              {pages.map((page) => (
+                <Link key={page._id} href={`/${page.slug}`} className="hover:underline">{page.title}</Link>
+              ))}
+            </div>
+            <Link href="/projects">Projects</Link>
+            <Link href="/essays">Essays</Link>
+            <ModeToggle />
+          </header>
           <main className="py-20">{children}</main>
         </ThemeProvider>
       </body>
