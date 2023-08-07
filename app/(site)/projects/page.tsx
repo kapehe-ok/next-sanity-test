@@ -3,9 +3,9 @@ import { getProjects } from "@/sanity/sanity-utils";
 import { PortableText } from '@portabletext/react';
 import Image from "next/image";
 
-export default async function ProjectPage() {
+export default async function Page() {
   const projects = await getProjects();
-  
+
   return (
     <div>
       {projects.map((project) => (

@@ -1,7 +1,9 @@
-"use client"
+import { getPages } from '@/sanity/sanity-utils'
 import React from 'react'
 
-const Page = () => {
+export default async function Page() {
+  const essays = await getPages();
+
   return (
     <div className='mt-3 flex flex-col gap-3'>
       <div className=' text-gray-500'>
@@ -19,10 +21,15 @@ const Page = () => {
         Recent essays
       </p>
       <p>
-        Nothing to show yet..
+        {essays.map((essay) => (
+          <div key={essay._id}>
+            <div>
+              <h1 className='text-xl font-bold'>{essay.title}</h1>
+
+            </div>
+          </div>
+        ))}
       </p>
     </div>
   )
 }
-
-export default Page
