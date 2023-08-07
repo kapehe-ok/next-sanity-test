@@ -21,14 +21,14 @@ export default async function RootLayout({
 
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className="m-3">
+      <body className="m-8">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <header className="flex items-center justify-between">
-            <Link href="/" className="font-semibold text-xl">Alvaro Peña</Link>
+            <Link href="/" className="font-semibold text-2xl">Alvaro Peña</Link>
             <div className='flex flex-row gap-6 items-center'>
               <Link href="/projects">Projects</Link>
               <Link href="/essays">Essays</Link>
-              <a href='https://www.x.com/alvropenaa' className='text-2xl'>𝕏</a>
+              <a href='https://www.x.com/alvropenaa' className='text-2xl' target='_blank' rel='noopener noreferrer'>𝕏</a>
               <ModeToggle />
             </div>
           </header>
