@@ -21,7 +21,7 @@ export default async function Page() {
               className="border-1 border-gray-700 object-cover rounded-sm"
             />
             <div className="flex flex-col justify-center gap-3 ml-3">
-              <h1 className="text-2xl font-semibold">{project.name}</h1>
+              <h1 className="text-xl font-semibold">{project.name}</h1>
               <a
                 href={project.url}
                 title="View Project"
