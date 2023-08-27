@@ -11,14 +11,6 @@ const Header = () => {
       <div className="flex flex-row gap-6 items-center">
         <Link href="/projects">Projects</Link>
         <Link href="/essays">Essays</Link>
-        <a
-          href="https://www.x.com/alvropenaa"
-          className="text-2xl"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          𝕏
-        </a>
         <ModeToggle />
       </div>
     </header>
