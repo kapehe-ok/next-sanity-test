@@ -49,13 +49,25 @@ const Header = () => {
             ref={dropdownRef}
             className="absolute top-full right-0 w-48 bg-white dark:bg-secondary shadow-md rounded-md p-6 mt-2"
           >
-            <Link href="/" className="block mb-2 hover:text-blue-500">
+            <Link
+              href="/"
+              className="block mb-2 hover:text-blue-500"
+              onClick={() => setIsMenuOpen(false)}
+            >
               Home
             </Link>
-            <Link href="/projects" className="block mb-2 hover:text-blue-500">
+            <Link
+              href="/projects"
+              className="block mb-2 hover:text-blue-500"
+              onClick={() => setIsMenuOpen(false)}
+            >
               Projects
             </Link>
-            <Link href="/essays" className="block hover:text-blue-500">
+            <Link
+              href="/essays"
+              className="block hover:text-blue-500"
+              onClick={() => setIsMenuOpen(false)}
+            >
               Essays
             </Link>
           </div>
