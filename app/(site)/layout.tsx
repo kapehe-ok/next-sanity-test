@@ -16,10 +16,10 @@ export default async function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className="">
+      <body className="h-screen">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <Header />
-          <main className="h-screen">{children}</main>
+          <main>{children}</main>
           <Footer />
         </ThemeProvider>
       </body>

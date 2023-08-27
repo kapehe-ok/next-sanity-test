@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { ModeToggle } from "./mode-toggle";
+import { Menu } from "lucide-react";
 
 const Header = () => {
   return (
@@ -8,10 +9,15 @@ const Header = () => {
       <Link href="/" className="font-semibold text-2xl">
         Alvaro Peña
       </Link>
-      <div className="flex flex-row gap-6 items-center">
-        <Link href="/projects">Projects</Link>
-        <Link href="/essays">Essays</Link>
+      <div className="flex flex-row gap-3 items-center">
+        <Link href="/projects" className="hidden md:block">
+          Projects
+        </Link>
+        <Link href="/essays" className="hidden md:block">
+          Essays
+        </Link>
         <ModeToggle />
+        <Menu className="md:hidden"/>
       </div>
     </header>
   );
