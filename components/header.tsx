@@ -6,11 +6,14 @@ import { Menu } from "lucide-react";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const dropdownRef = useRef(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleDocumentClick = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
         setIsMenuOpen(false);
       }
     };
@@ -21,7 +24,6 @@ const Header = () => {
       document.removeEventListener("mousedown", handleDocumentClick);
     };
   }, []);
-
 
   return (
     <header className="flex items-center justify-between m-5">
@@ -44,20 +46,19 @@ const Header = () => {
         </button>
         {isMenuOpen && (
           <div
-          ref={dropdownRef}
-          className="absolute top-full right-0 w-48 bg-white dark:bg-secondary shadow-md rounded-md p-6 mt-2"
-        >
-          <Link href="/" className="block mb-2 hover:text-blue-500">
-            Home
-          </Link>
-          <Link href="/projects" className="block mb-2 hover:text-blue-500">
-            Projects
-          </Link>
-          <Link href="/essays" className="block hover:text-blue-500">
-            Essays
-          </Link>
-        </div>
-        
+            ref={dropdownRef}
+            className="absolute top-full right-0 w-48 bg-white dark:bg-secondary shadow-md rounded-md p-6 mt-2"
+          >
+            <Link href="/" className="block mb-2 hover:text-blue-500">
+              Home
+            </Link>
+            <Link href="/projects" className="block mb-2 hover:text-blue-500">
+              Projects
+            </Link>
+            <Link href="/essays" className="block hover:text-blue-500">
+              Essays
+            </Link>
+          </div>
         )}
       </div>
     </header>
