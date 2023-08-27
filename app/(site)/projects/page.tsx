@@ -33,7 +33,7 @@ export default async function Page() {
               </a>
             </div>
           </div>
-          <div className="text-xs mt-3">
+          <div className="text-sm mt-3">
             <PortableText value={project.content} />
           </div>
         </div>
