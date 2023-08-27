@@ -36,9 +36,7 @@ export default async function Page() {
         {essays.map((essay) => (
           <div key={essay._id}>
             <h1 className="text-xl font-semibold">{essay.title}</h1>
-            <div>
-              <PortableText value={essay.content} />
-            </div>
+            <PortableText value={essay.content} />
           </div>
         ))}
       </p>

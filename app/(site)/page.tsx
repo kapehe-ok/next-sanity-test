@@ -7,11 +7,7 @@ export default async function Home() {
 
   return (
     <div className="flex flex-col gap-3 m-5 text-md">
-      <p className="font-bold">Experience</p>      
-      <p>Dudda</p>
-      <p>Alegra</p>
-      <p className="font-bold">Education</p>
-      <p>Universidad del Pacífico</p>
+      <p>Hello, world!</p>
     </div>
   );
 }
