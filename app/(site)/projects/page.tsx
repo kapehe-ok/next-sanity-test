@@ -7,7 +7,7 @@ export default async function Page() {
   const projects = await getProjects();
 
   return (
-    <div>
+    <div className='m-5'>
       {projects.map((project) => (
         <div key={project._id} className="items-center my-3">
           <div className="flex flex-row">
