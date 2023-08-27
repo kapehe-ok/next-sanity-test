@@ -9,8 +9,8 @@ const Header = () => {
   const dropdownRef = useRef(null);
 
   useEffect(() => {
-    const handleDocumentClick = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+    const handleDocumentClick = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
         setIsMenuOpen(false);
       }
     };
@@ -21,6 +21,7 @@ const Header = () => {
       document.removeEventListener("mousedown", handleDocumentClick);
     };
   }, []);
+
 
   return (
     <header className="flex items-center justify-between m-5">
