@@ -2,7 +2,7 @@ import { createClient, groq } from "next-sanity";
 import { Project } from "@/types/Project";
 import clientConfig from './config/client-config'
 import { Page } from "@/types/Page";
-
+const revalidate = 60
 export async function getProjects(): Promise<Project[]> {
   return createClient(clientConfig).fetch(
     groq`*[_type == "project"]{
@@ -14,6 +14,7 @@ export async function getProjects(): Promise<Project[]> {
       url,
       content
     }`
+    ,{next: {revalidate}}
   )
 }
 
@@ -39,7 +40,7 @@ export async function getPages(): Promise<Page[]> {
       _createdAt,
       title,
       "slug": slug.current
-    }`
+    }`,{next: {revalidate}}
   )
 }
 
@@ -55,4 +56,3 @@ export async function getPage(slug: string): Promise<Page> {
     { slug }
   )
 }
-

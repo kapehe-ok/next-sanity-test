@@ -1,6 +1,9 @@
+
+
 import { getPages } from "@/sanity/sanity-utils";
 import { PortableText } from "@portabletext/react";
 import React from "react";
+
 
 export default async function Page() {
   const essays = await getPages();
