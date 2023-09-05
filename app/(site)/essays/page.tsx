@@ -15,7 +15,7 @@ export default async function Page() {
         <p className="text-xs mr-20">
           If you are interested in reading my book reviews, which tend to be
           more frequent, please visit{" "}
-          <a href="https://www.lee-up.org/" className="text-blue-500">
+          <a href="https://www.lee-up.org/" className="underline text-blue-500">
             Lee UP
           </a>
           . Lee UP is the book club my friends and I funded while we were doing
@@ -29,7 +29,7 @@ export default async function Page() {
           If you wish to buy one of the books listed there, please use the
           discount provided. All purchases made through our affiliate program
           with{" "}
-          <a href="" className="text-blue-500">
+          <a href="" className="underline text-blue-500">
             Librerías SBS
           </a>{" "}
           help the club raise funds for activities.
@@ -38,9 +38,10 @@ export default async function Page() {
       <p className="text-3xl">Recent essays</p>
       <p>
         {essays.map((essay) => (
-          <div key={essay._id}>
-            <Link href={`${essay.slug}`}> <h1>{essay.title}</h1></Link>
-
+          <div key={essay._id} className="my-2">
+            <Link href={`${essay.slug}`}>
+              <h1 className="underline text-blue-500">{essay.title}</h1>
+            </Link>
           </div>
         ))}
       </p>
