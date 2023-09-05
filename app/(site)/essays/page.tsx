@@ -1,12 +1,13 @@
 
 
 import { getPages } from "@/sanity/sanity-utils";
-import { PortableText } from "@portabletext/react";
+import Link from "next/link";
 import React from "react";
 
 
 export default async function Page() {
   const essays = await getPages();
+  console.log(essays)
 
   return (
     <div className="flex flex-col gap-3 m-5">
@@ -38,8 +39,8 @@ export default async function Page() {
       <p>
         {essays.map((essay) => (
           <div key={essay._id}>
-            <h1 className="text-xl font-semibold">{essay.title}</h1>
-            <PortableText value={essay.content} />
+            <Link href={`${essay.slug}`}> <h1>{essay.title}</h1></Link>
+
           </div>
         ))}
       </p>
