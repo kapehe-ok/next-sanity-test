@@ -14,7 +14,6 @@ export async function getProjects(): Promise<Project[]> {
       url,
       content
     }`
-    ,{next: {revalidate}}
   )
 }
 
@@ -40,7 +39,7 @@ export async function getPages(): Promise<Page[]> {
       _createdAt,
       title,
       "slug": slug.current
-    }`,{next: {revalidate}}
+    }`
   )
 }
 
