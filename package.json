@@ -26,6 +26,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "sanity": "^3.6.0",
+    "sanity-plugin-vercel-deploy": "^3.3.4",
     "styled-components": "^6.0.7",
     "tailwind-merge": "^1.14.0",
     "tailwindcss-animate": "^1.0.6"
