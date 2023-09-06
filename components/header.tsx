@@ -10,6 +10,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import { Button } from "./ui/button";
 
 
 const Header = () => {
@@ -29,7 +30,9 @@ const Header = () => {
         <div className="md:hidden">
           <DropdownMenu>
             <DropdownMenuTrigger>
-              <Menu />
+              <Button variant={"outline"}>
+                <Menu />
+              </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent>
               <Link href={"/"}>
