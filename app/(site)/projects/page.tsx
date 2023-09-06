@@ -9,7 +9,7 @@ export default async function Page() {
   const projects = await getProjects();
 
   return (
-    <div className="m-5">
+    <div className="h-screen m-5">
       {projects.map((project) => (
         <div key={project._id} className="items-center my-3">
           <div className="flex flex-row">
@@ -29,7 +29,7 @@ export default async function Page() {
                 rel="noopener noreferrer"
                 className="bg-secondary rounded-sm font-semibold py-2   :bg-secondary hover:text-secondary transition"
               >
-               <Github />
+                <Github />
               </a>
             </div>
           </div>

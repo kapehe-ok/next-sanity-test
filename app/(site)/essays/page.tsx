@@ -10,7 +10,7 @@ export default async function Page() {
   console.log(essays)
 
   return (
-    <div className="flex flex-col gap-3 m-5">
+    <div className="h-screen gap-3 m-5">
       <div className=" text-gray-500">
         <p className="text-xs mr-20">
           If you are interested in reading my book reviews, which tend to be

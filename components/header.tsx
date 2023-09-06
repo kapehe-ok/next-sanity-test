@@ -1,30 +1,18 @@
-"use client";
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { ModeToggle } from "./mode-toggle";
 import { Menu } from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+
 
 const Header = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const dropdownRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const handleDocumentClick = (event: MouseEvent) => {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(event.target as Node)
-      ) {
-        setIsMenuOpen(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleDocumentClick);
-
-    return () => {
-      document.removeEventListener("mousedown", handleDocumentClick);
-    };
-  }, []);
-
   return (
     <header className="flex items-center justify-between m-5">
       <Link href="/" className="font-semibold text-2xl">
@@ -38,40 +26,28 @@ const Header = () => {
           Essays
         </Link>
         <ModeToggle />
-        <button
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-          className="md:hidden"
-        >
-          <Menu />
-        </button>
-        {isMenuOpen && (
-          <div
-            ref={dropdownRef}
-            className="absolute top-full right-0 w-48 bg-white dark:bg-secondary shadow-md rounded-md p-6 mt-2"
-          >
-            <Link
-              href="/"
-              className="block mb-2 hover:text-blue-500"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Home
+        <DropdownMenu>
+          <DropdownMenuTrigger>
+            <Menu />
+          </DropdownMenuTrigger>
+          <DropdownMenuContent>
+            <Link href={"/"}>
+              <DropdownMenuItem>
+                Home
+              </DropdownMenuItem>
             </Link>
-            <Link
-              href="/projects"
-              className="block mb-2 hover:text-blue-500"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Projects
+            <Link href={"/projects"}>
+              <DropdownMenuItem>
+                Projects
+              </DropdownMenuItem>
             </Link>
-            <Link
-              href="/essays"
-              className="block hover:text-blue-500"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Essays
+            <Link href={"/essays"}>
+              <DropdownMenuItem>
+                Essays
+              </DropdownMenuItem>
             </Link>
-          </div>
-        )}
+          </DropdownMenuContent>
+        </DropdownMenu>
       </div>
     </header>
   );
