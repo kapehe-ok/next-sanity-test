@@ -26,28 +26,30 @@ const Header = () => {
           Essays
         </Link>
         <ModeToggle />
-        <DropdownMenu>
-          <DropdownMenuTrigger>
-            <Menu />
-          </DropdownMenuTrigger>
-          <DropdownMenuContent>
-            <Link href={"/"}>
-              <DropdownMenuItem>
-                Home
-              </DropdownMenuItem>
-            </Link>
-            <Link href={"/projects"}>
-              <DropdownMenuItem>
-                Projects
-              </DropdownMenuItem>
-            </Link>
-            <Link href={"/essays"}>
-              <DropdownMenuItem>
-                Essays
-              </DropdownMenuItem>
-            </Link>
-          </DropdownMenuContent>
-        </DropdownMenu>
+        <div className="md:hidden">
+          <DropdownMenu>
+            <DropdownMenuTrigger>
+              <Menu />
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+              <Link href={"/"}>
+                <DropdownMenuItem>
+                  Home
+                </DropdownMenuItem>
+              </Link>
+              <Link href={"/projects"}>
+                <DropdownMenuItem>
+                  Projects
+                </DropdownMenuItem>
+              </Link>
+              <Link href={"/essays"}>
+                <DropdownMenuItem>
+                  Essays
+                </DropdownMenuItem>
+              </Link>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </div>
       </div>
     </header>
   );

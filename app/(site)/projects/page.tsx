@@ -2,7 +2,7 @@ import React from "react";
 import { getProjects } from "@/sanity/sanity-utils";
 import { PortableText } from "@portabletext/react";
 import Image from "next/image";
-import { Github } from "lucide-react";
+import { Github, ArrowUpRight } from "lucide-react";
 
 
 export default async function Page() {
@@ -22,15 +22,18 @@ export default async function Page() {
             />
             <div className="flex flex-col justify-center gap-3 ml-3">
               <h1 className="text-xl font-semibold">{project.name}</h1>
-              <a
-                href={project.url}
-                title="View Project"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-secondary rounded-sm font-semibold py-2   :bg-secondary hover:text-secondary transition"
-              >
-                <Github />
-              </a>
+              <div className="flex flex-row gap-2">
+                <a
+                  href={project.url}
+                >
+                  <Github />
+                </a>
+                <a
+                  href={project.url}
+                >
+                  <ArrowUpRight />
+                </a>
+              </div>
             </div>
           </div>
           <div className="text-sm mt-3">
