@@ -16,6 +16,9 @@ export default async function Page({ params }: Props) {
       <div className="text-sm mt-5">
         <PortableText value={page?.content} />
       </div>
+      <div>
+        Do you have any comments?
+      </div>
     </div>
   );
 }

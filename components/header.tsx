@@ -34,7 +34,7 @@ const Header = () => {
                 <Menu />
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent>
+            <DropdownMenuContent align="end">
               <Link href={"/"}>
                 <DropdownMenuItem>
                   Home
