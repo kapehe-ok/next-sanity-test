@@ -1,8 +1,6 @@
 import OpenAI from 'openai'
 
-const openai = new OpenAI({
-    apiKey: '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'
-});
+const openai = new OpenAI();
 
 export const generateQuestion = async (topic: string) => {
     try {
