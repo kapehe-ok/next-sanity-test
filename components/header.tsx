@@ -20,13 +20,10 @@ const Header = () => {
         Alvaro Peña
       </Link>
       <div className="relative flex flex-row gap-3 items-center">
-        <Link href="/projects" className="hidden md:block">
-          Projects
-        </Link>
-        <Link href="/essays" className="hidden md:block">
-          Essays
-        </Link>
+
+
         <ModeToggle />
+
         <div className="md:hidden">
           <DropdownMenu>
             <DropdownMenuTrigger>

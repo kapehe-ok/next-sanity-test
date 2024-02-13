@@ -6,7 +6,7 @@ import Footer from '@/components/footer';
 
 export const metadata = {
   title: 'Alvaro Peña',
-  description: 'Bio, projects, and essays.',
+  description: 'No description.',
 }
 
 export default async function RootLayout({

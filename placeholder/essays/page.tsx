@@ -1,5 +1,3 @@
-
-
 import { getPages } from "@/sanity/sanity-utils";
 import Link from "next/link";
 import React from "react";
