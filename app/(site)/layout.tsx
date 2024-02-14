@@ -5,6 +5,7 @@ import Header from '@/components/header';
 import Footer from '@/components/footer';
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from "@vercel/speed-insights/next"
+import { Toaster } from '@/components/ui/toaster';
 
 export const metadata = {
   title: 'Alvaro Peña',
@@ -22,6 +23,7 @@ export default async function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <Header />
           <main>{children}</main>
+          <Toaster />
           <Footer />
         </ThemeProvider>
         <Analytics />
