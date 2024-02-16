@@ -15,25 +15,33 @@ import { useToast } from "@/components/ui/use-toast"
 
 export function FeedbackDialog() {
     // URL to submit the form. Replace with your Google Form action URL
-    const formAction = "YOUR_GOOGLE_FORM_ACTION_URL";
+    const formAction = "https://script.google.com/macros/s/AKfycbxyoUXUs6NuCMXKrGpYWghdHFa3-6rYqU_FGTdwbzILWYawmLClilPEaIIxZkI5o0WJ/exec";
     const { toast } = useToast();
 
-    // Adjust the input names to match your Google Form field names
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        const formData = new FormData(e.currentTarget); // Use currentTarget instead of target for type safety
-        fetch(formAction, {
-            method: 'POST',
-            body: formData,
-            mode: 'no-cors', // Google Forms submission results in a redirect, which causes a CORS error if not handled.
-        }).then(() => {
-            // Handle submission success
-            alert('Feedback submitted successfully!');
-        }).catch((error) => {
-            // Handle submission error
+    const handleSubmit = async () => {
+        const formElement = document.querySelector('form'); // This might return null if the form is not found
+
+        // Check if formElement is not null before proceeding
+        if (formElement === null) {
+            console.error('Form element not found');
+            return; // Exit the function if form is not found
+        }
+
+        const formData = new FormData(formElement);
+
+        try {
+            await fetch(formAction, {
+                method: 'POST',
+                body: formData,
+                mode: 'no-cors',
+            });
+            console.log('Feedback submitted successfully!');
+            // Toast is shown inside the onClick, so it's removed from here
+        } catch (error) {
             console.error('Submission failed', error);
-        });
+        }
     };
+
 
 
     return (
@@ -65,11 +73,13 @@ export function FeedbackDialog() {
                         </div>
                     </div>
                     <DialogFooter>
-                        <Button type="submit" onClick={() => {
+                        <Button type="submit" onClick={(e) => {
+                            e.preventDefault(); // Prevent default form submission
                             toast({
                                 title: 'Thank you for submitting your feedback!',
                                 description: 'We will contact you to your email address.'
-                            })
+                            });
+                            handleSubmit(); // Then submit the form data
                         }}>Submit</Button>
                     </DialogFooter>
                 </DialogContent>
