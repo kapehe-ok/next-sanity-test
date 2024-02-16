@@ -37,10 +37,10 @@ export default function SlugPage() {
         setLoading(false);
     }, [slug]); // slug is a dependency of fetchQuestion
 
-    // Fetch initial question on mount
+    // Use fetchQuestion in useEffect without warning
     useEffect(() => {
         fetchQuestion();
-    }, [fetchQuestion]); // Dependency on slug to refetch if it changes
+    }, [fetchQuestion]); // Now it's safe to include fetchQuestion as a dependency
 
     const handleContinue = async () => {
         if (interactionState === 'answering') {
