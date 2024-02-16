@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
@@ -15,8 +15,8 @@ export default function SlugPage() {
     const [loading, setLoading] = useState(true);
     const [interactionState, setInteractionState] = useState('answering');
 
-    // Define fetchQuestion function for reuse
-    const fetchQuestion = async () => {
+    // Memoize fetchQuestion using useCallback
+    const fetchQuestion = useCallback(async () => {
         setLoading(true);
         try {
             const response = await fetch('/api/generate-question', {
@@ -35,12 +35,12 @@ export default function SlugPage() {
             console.error("Failed to fetch question:", error);
         }
         setLoading(false);
-    };
+    }, [slug]); // slug is a dependency of fetchQuestion
 
-    // Fetch initial question on mount
+    // Use fetchQuestion in useEffect without warning
     useEffect(() => {
         fetchQuestion();
-    }, [slug]); // Dependency on slug to refetch if it changes
+    }, [fetchQuestion]); // Now it's safe to include fetchQuestion as a dependency
 
     const handleContinue = async () => {
         if (interactionState === 'answering') {
