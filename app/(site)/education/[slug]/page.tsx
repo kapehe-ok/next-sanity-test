@@ -1,8 +1,7 @@
 "use client";
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
-import { generateQuestion, evaluateAnswer } from '@/lib/ai-generation';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft } from 'lucide-react';
 import { FeedbackDialog } from '@/components/feedback-dialog';
@@ -16,37 +15,64 @@ export default function SlugPage() {
     const [loading, setLoading] = useState(true);
     const [interactionState, setInteractionState] = useState('answering');
 
-    useEffect(() => {
-        const loadQuestion = async () => {
-            if (slug) {
-                const question = await generateQuestion(slug);
-                setCurrentQuestion(question || '');
-                setLoading(false);
-            }
-        };
-        loadQuestion();
-    }, [slug]);
-
-    const handleSubmitAnswer = async () => {
+    // Memoize fetchQuestion using useCallback
+    const fetchQuestion = useCallback(async () => {
         setLoading(true);
-        const evaluation = await evaluateAnswer(currentQuestion, userAnswer);
-        setFeedback(evaluation || '');
-        setUserAnswer('');
-        setInteractionState('viewingFeedback');
+        try {
+            const response = await fetch('/api/generate-question', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ topic: slug })
+            });
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            const textResponse = await response.text();
+            setCurrentQuestion(textResponse);
+        } catch (error) {
+            console.error("Failed to fetch question:", error);
+        }
         setLoading(false);
-    };
+    }, [slug]); // slug is a dependency of fetchQuestion
+
+    // Fetch initial question on mount
+    useEffect(() => {
+        fetchQuestion();
+    }, [fetchQuestion]); // Dependency on slug to refetch if it changes
 
     const handleContinue = async () => {
-        if (interactionState === 'viewingFeedback') {
+        if (interactionState === 'answering') {
+            // User has answered, fetch feedback
             setLoading(true);
-            const nextQuestion = await generateQuestion(slug);
-            setCurrentQuestion(nextQuestion || '');
-            setFeedback('');
-            setUserAnswer('');
-            setInteractionState('answering');
+            try {
+                const response = await fetch('/api/evaluate-answer', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        question: currentQuestion,
+                        userAnswer: userAnswer,
+                    })
+                });
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const textResponse = await response.text();
+                setFeedback(textResponse);
+                setInteractionState('reviewing'); // Move to reviewing state to show feedback
+            } catch (error) {
+                console.error("Failed to evaluate answer:", error);
+            }
             setLoading(false);
-        } else {
-            await handleSubmitAnswer();
+        } else if (interactionState === 'reviewing') {
+            // User has reviewed feedback, fetch next question
+            fetchQuestion(); // Reuse fetchQuestion function
+            setInteractionState('answering'); // Reset to answering state for the next question
+            setFeedback(''); // Clear feedback for the next round
+            setUserAnswer(''); // Clear the previous answer
         }
     };
 
@@ -86,6 +112,7 @@ export default function SlugPage() {
             <Button onClick={handleContinue} disabled={interactionState === 'answering' && !userAnswer} className="w-40">
                 Continue
             </Button>
+
             <FeedbackDialog />
         </div>
     );
