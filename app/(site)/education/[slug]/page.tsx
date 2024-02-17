@@ -92,7 +92,7 @@ export default function SlugPage() {
                     <p className="text-md">Return</p>
                 </Link>
             </Button>
-            <p className="text-xl">You are currently learning about <strong>{slug}</strong>.</p>
+            <p className="text-xl">You are currently learning <strong>{slug}</strong>.</p>
             <div className="text-lg mt-5 text-center">{currentQuestion || 'Loading question...'}</div>
 
             <div className="my-5 space-x-4">
