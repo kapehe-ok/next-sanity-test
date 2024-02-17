@@ -17,7 +17,7 @@ export async function POST(req) {
       messages: [
         {
           role: "system",
-          content: `You are a creative and helpful question and answer generator. Create a single multiple-choice question about ${topic} that's engaging and interesting for those interested in learning about the topic. Ensure the question format is concise, clear, and entertaining. Provide four options (A, B, C, D) without revealing the correct answer. Aim for questions that provoke thought and interest.`,
+          content: `Generate a compelling quiz question about ${topic}. You are a creative and helpful question and answer generator. Create a single multiple-choice question about ${topic} that's engaging and interesting for those interested in learning about the topic. Ensure the question format is concise, clear, and entertaining. Provide four options (A, B, C, D) without revealing the correct answer. Aim for questions that provoke thought and interest.`,
         },
         {
           role: "user",
