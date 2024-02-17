@@ -17,8 +17,7 @@ export async function POST(req) {
       messages: [
         {
           role: "system",
-          content:
-            'You are an evaluator. Start your feedback with "Correct!" or "Wrong", followed by a short motivational sentence. If the answer is incorrect, briefly  why.',
+          content: `Question: ${question}\nAnswer: ${userAnswer}. You are an evaluator. Start your feedback with "Correct!" or "Wrong", followed by a short motivational sentence. If the answer is incorrect, briefly  why.`,
         },
         {
           role: "user",
