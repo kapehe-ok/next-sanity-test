@@ -5,6 +5,8 @@ import { Button } from "@/components/ui/button";
 
 
 const Header = () => {
+
+
   return (
     <header className="flex items-center justify-between m-5">
       <Link href="/" className="font-semibold text-xl">
@@ -13,7 +15,7 @@ const Header = () => {
 
       <div className="relative flex flex-row gap-3 items-center">
         <ModeToggle />
-        <Button variant="ghost">
+        <Button variant="ghost" onClick={() => window.open('https://alvropena.beehiiv.com/', '_blank', 'noopener,noreferrer')}>
           Newsletter
         </Button>
       </div>
