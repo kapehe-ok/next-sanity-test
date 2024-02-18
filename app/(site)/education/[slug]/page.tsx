@@ -6,9 +6,9 @@ import { Button } from '@/components/ui/button';
 import { ArrowLeft } from 'lucide-react';
 import { FeedbackDialog } from '@/components/feedback-dialog';
 
-export default function SlugPage() {
+export default function Page() {
     const pathname = usePathname();
-    const slug = pathname.split('/').pop() ?? '';
+    const slug = decodeURIComponent(pathname.split('/').pop() ?? '');
     const [currentQuestion, setCurrentQuestion] = useState('');
     const [userAnswer, setUserAnswer] = useState('');
     const [feedback, setFeedback] = useState('');
@@ -112,7 +112,6 @@ export default function SlugPage() {
             <Button onClick={handleContinue} disabled={interactionState === 'answering' && !userAnswer} className="w-40">
                 Continue
             </Button>
-
             <FeedbackDialog />
         </div>
     );

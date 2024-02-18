@@ -28,8 +28,8 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "app/api/generate-question/route.js",
-    "app/api/evaluate-answer/route.js"
+    "app/api/generate-question/route.tsx",
+    "app/api/evaluate-answer/route.tsx"
   ],
   "exclude": ["node_modules"]
 }

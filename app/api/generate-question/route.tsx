@@ -1,5 +1,6 @@
 import OpenAI from "openai";
 import { OpenAIStream, StreamingTextResponse } from "ai";
+import { NextRequest } from "next/server";
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
@@ -7,12 +8,12 @@ const openai = new OpenAI({
 
 export const runtime = "edge";
 
-export async function POST(req) {
+export async function POST(req: NextRequest) {
   try {
-    const { topic } = req.body;
+    const { topic } = await req.json();
 
     const response = await openai.chat.completions.create({
-      model: "gpt-4-0125-preview",
+      model: "gpt-3.5-turbo",
       stream: true,
       messages: [
         {
@@ -27,7 +28,6 @@ export async function POST(req) {
     });
 
     const stream = OpenAIStream(response);
-
     return new StreamingTextResponse(stream);
   } catch (error) {
     console.error(error);

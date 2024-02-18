@@ -26,9 +26,9 @@ const Page: React.FC = () => {
                     onChange={handleChange}
                     placeholder="Type here..."
                     type="search"
-                    className="mb-2" // Assuming you can pass className to style your Input
+                    className="mb-2"
                 />
-                <button type="submit" className="hidden">Submit</button> {/* Invisible submit button */}
+                <button type="submit" className="hidden">Submit</button>
             </form>
         </div>
     );

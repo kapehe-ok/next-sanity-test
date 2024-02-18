@@ -7,12 +7,12 @@ const openai = new OpenAI({
 
 export const runtime = "edge";
 
-export async function POST(req) {
+export async function POST(req: Request) {
   try {
-    const { question, userAnswer } = req.body;
+    const { question, userAnswer } = await req.json();
 
     const response = await openai.chat.completions.create({
-      model: "gpt-4-0125-preview",
+      model: "gpt-3.5-turbo",
       stream: true,
       messages: [
         {
