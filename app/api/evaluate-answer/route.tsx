@@ -9,21 +9,12 @@ export const runtime = "edge";
 
 export async function POST(req: Request) {
   try {
-    const { question, userAnswer } = await req.json();
+    const { messages } = await req.json();
 
     const response = await openai.chat.completions.create({
       model: "gpt-3.5-turbo",
       stream: true,
-      messages: [
-        {
-          role: "system",
-          content: `Question: ${question}\nAnswer: ${userAnswer}. You are an evaluator. Start your feedback with "Correct!" or "Wrong", followed by a short motivational sentence. If the answer is incorrect, briefly  why.`,
-        },
-        {
-          role: "user",
-          content: `Question: ${question}\nAnswer: ${userAnswer}`,
-        },
-      ],
+      messages,
     });
 
     const stream = OpenAIStream(response);

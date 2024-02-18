@@ -24,7 +24,18 @@ export default function Page() {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ topic: slug })
+                body: JSON.stringify({
+                    messages: [
+                        {
+                            role: "system",
+                            content: `Generate a compelling quiz question about ${slug}. You are a creative and helpful question and answer generator. Create a single multiple-choice question about ${slug} that's engaging and interesting for those interested in learning about the topic. Ensure the question format is concise, clear, and entertaining. Provide four options (A, B, C, D) without revealing the correct answer. Aim for questions that provoke thought and interest.`,
+                        },
+                        {
+                            role: "user",
+                            content: `Generate a compelling quiz question about ${slug}.`,
+                        },
+                    ],
+                })
             });
             if (!response.ok) {
                 throw new Error('Network response was not ok');
@@ -53,8 +64,16 @@ export default function Page() {
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
-                        question: currentQuestion,
-                        userAnswer: userAnswer,
+                        messages: [
+                            {
+                                role: "system",
+                                content: `Question: ${currentQuestion}\nAnswer: ${userAnswer}. You are an evaluator. Start your feedback with "Correct!" or "Wrong", followed by a short motivational sentence. If the answer is incorrect, briefly  why.`,
+                            },
+                            {
+                                role: "user",
+                                content: `Question: ${currentQuestion}\nAnswer: ${userAnswer}`,
+                            },
+                        ],
                     })
                 });
                 if (!response.ok) {

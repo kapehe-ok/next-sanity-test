@@ -1,6 +1,5 @@
 import OpenAI from "openai";
 import { OpenAIStream, StreamingTextResponse } from "ai";
-import { NextRequest } from "next/server";
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
@@ -8,23 +7,14 @@ const openai = new OpenAI({
 
 export const runtime = "edge";
 
-export async function POST(req: NextRequest) {
+export async function POST(req: Request) {
   try {
-    const { topic } = await req.json();
+    const { messages } = await req.json();
 
     const response = await openai.chat.completions.create({
       model: "gpt-3.5-turbo",
       stream: true,
-      messages: [
-        {
-          role: "system",
-          content: `Generate a compelling quiz question about ${topic}. You are a creative and helpful question and answer generator. Create a single multiple-choice question about ${topic} that's engaging and interesting for those interested in learning about the topic. Ensure the question format is concise, clear, and entertaining. Provide four options (A, B, C, D) without revealing the correct answer. Aim for questions that provoke thought and interest.`,
-        },
-        {
-          role: "user",
-          content: `Generate a compelling quiz question about ${topic}.`,
-        },
-      ],
+      messages,
     });
 
     const stream = OpenAIStream(response);
