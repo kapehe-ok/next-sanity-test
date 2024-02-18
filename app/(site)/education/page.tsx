@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, FormEvent, ChangeEvent } from 'react';
 import { useRouter } from 'next/navigation'; // Ensure correct import path
+import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
 
 const Page: React.FC = () => {
@@ -18,6 +19,7 @@ const Page: React.FC = () => {
 
     return (
         <div className="flex flex-col min-h-screen justify-center items-center space-y-4 px-4 lg:px-20 mx-auto">
+            <Badge variant='secondary'>Version 1.0.0</Badge>
             <h1 className="text-2xl font-bold">What do you want to learn today?</h1>
             <p className="text-sm font-medium text-gray-500 dark:text-gray-400">For example, type &apos;cars&apos;, &apos;tennis&apos;, or &apos;wine&apos;.</p>
             <form onSubmit={handleSubmit} className="w-full max-w-md">

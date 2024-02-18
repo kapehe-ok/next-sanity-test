@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
-import { ModeToggle } from "./mode-toggle";
+import { ModeToggle } from "@/components/mode-toggle";
+import { Button } from "@/components/ui/button";
 
 
 const Header = () => {
@@ -9,8 +10,12 @@ const Header = () => {
       <Link href="/" className="font-semibold text-xl">
         Alvaro Peña
       </Link>
+
       <div className="relative flex flex-row gap-3 items-center">
         <ModeToggle />
+        <Button variant="ghost">
+          Newsletter
+        </Button>
       </div>
     </header>
   );

@@ -2,6 +2,8 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
+import { Badge } from '@/components/ui/badge';
+import { toast } from "sonner"
 import { Button } from '@/components/ui/button';
 import { ArrowLeft } from 'lucide-react';
 import { FeedbackDialog } from '@/components/feedback-dialog';
@@ -111,6 +113,7 @@ export default function Page() {
                     <p className="text-md">Return</p>
                 </Link>
             </Button>
+
             <p className="text-xl">You are currently learning <strong>{slug}</strong>.</p>
             <div className="text-lg mt-5 text-center">{currentQuestion || 'Loading question...'}</div>
 

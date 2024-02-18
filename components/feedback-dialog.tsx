@@ -52,22 +52,22 @@ export function FeedbackDialog() {
             <form action={formAction} method="POST" onSubmit={handleSubmit}>
                 <DialogContent>
                     <DialogHeader>
-                        <DialogTitle>Give Feedback</DialogTitle>
+                        <DialogTitle>Tell us what you think!</DialogTitle>
                         <DialogDescription>
-                            Share your thoughts, please.
+                            We will love to hear from you. Share your thoughts, please.
                         </DialogDescription>
                     </DialogHeader>
                     <div className="grid gap-4 py-4">
                         {/* Adjust field names and IDs */}
-                        <div className="grid w-full items-center gap-1.5">
-                            <Label htmlFor="entry.name">Name</Label>
+                        <div className="grid w-full items-center gap-3">
+                            <Label htmlFor="entry.name">Name (Optional)</Label>
                             <Input type="text" name="entry.name" id="entry.name" placeholder="John Smith" required />
                         </div>
-                        <div className="grid w-full items-center gap-1.5">
-                            <Label htmlFor="entry.email">Email</Label>
+                        <div className="grid w-full items-center gap-3">
+                            <Label htmlFor="entry.email">Email (Optional)</Label>
                             <Input type="email" name="entry.email" id="entry.email" placeholder="john@email.com" required />
                         </div>
-                        <div className="grid w-full items-center gap-1.5">
+                        <div className="grid w-full items-center gap-3">
                             <Label htmlFor="entry.message">Message</Label>
                             <Textarea name="entry.message" id="entry.message" placeholder="Type your message here." required />
                         </div>
