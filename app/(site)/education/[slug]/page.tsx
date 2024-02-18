@@ -19,7 +19,7 @@ export default function Page() {
     const fetchQuestion = useCallback(async () => {
         setLoading(true);
         try {
-            const response = await fetch('/api/generate-question', {
+            const response = await fetch('http://127.0.0.1:8000/generate-question', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -46,19 +46,19 @@ export default function Page() {
             console.error("Failed to fetch question:", error);
         }
         setLoading(false);
-    }, [slug]); // slug is a dependency of fetchQuestion
+    }, [slug]);
 
     // Use fetchQuestion in useEffect without warning
     useEffect(() => {
         fetchQuestion();
-    }, [fetchQuestion]); // Now it's safe to include fetchQuestion as a dependency
+    }, [fetchQuestion]);
 
     const handleContinue = async () => {
         if (interactionState === 'answering') {
             // User has answered, fetch feedback
             setLoading(true);
             try {
-                const response = await fetch('/api/evaluate-answer', {
+                const response = await fetch('http://127.0.0.1:8000/evaluate-answer', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -81,17 +81,17 @@ export default function Page() {
                 }
                 const textResponse = await response.text();
                 setFeedback(textResponse);
-                setInteractionState('reviewing'); // Move to reviewing state to show feedback
+                setInteractionState('reviewing');
             } catch (error) {
                 console.error("Failed to evaluate answer:", error);
             }
             setLoading(false);
         } else if (interactionState === 'reviewing') {
             // User has reviewed feedback, fetch next question
-            fetchQuestion(); // Reuse fetchQuestion function
-            setInteractionState('answering'); // Reset to answering state for the next question
-            setFeedback(''); // Clear feedback for the next round
-            setUserAnswer(''); // Clear the previous answer
+            fetchQuestion();
+            setInteractionState('answering');
+            setFeedback('');
+            setUserAnswer('');
         }
     };
 
