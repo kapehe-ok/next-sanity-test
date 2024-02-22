@@ -28,7 +28,7 @@ const Page: React.FC = () => {
                     onChange={handleChange}
                     placeholder="Type here..."
                     type="search"
-                    className="mb-2"
+                    className="mb-2 text-base"
                 />
                 <button type="submit" className="hidden">Submit</button>
             </form>
