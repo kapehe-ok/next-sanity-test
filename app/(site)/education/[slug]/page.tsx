@@ -21,7 +21,7 @@ export default function Page() {
     const fetchQuestion = useCallback(async () => {
         setLoading(true);
         try {
-            const response = await fetch('http://127.0.0.1:8000/generate-question/', {
+            const response = await fetch('https://e597-134-154-45-249.ngrok-free.app/generate-question/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -60,7 +60,7 @@ export default function Page() {
             // User has answered, fetch feedback
             setLoading(true);
             try {
-                const response = await fetch('http://127.0.0.1:8000/evaluate-answer/', {
+                const response = await fetch('https://e597-134-154-45-249.ngrok-free.app/evaluate-answer/', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
