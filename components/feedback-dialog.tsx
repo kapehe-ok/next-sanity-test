@@ -61,15 +61,15 @@ export function FeedbackDialog() {
                         {/* Adjust field names and IDs */}
                         <div className="grid w-full items-center gap-3">
                             <Label htmlFor="entry.name">Name (Optional)</Label>
-                            <Input type="text" name="entry.name" id="entry.name" placeholder="John Smith" required />
+                            <Input type="text" name="entry.name" id="entry.name" placeholder="John Smith" required className="text-base" />
                         </div>
                         <div className="grid w-full items-center gap-3">
                             <Label htmlFor="entry.email">Email (Optional)</Label>
-                            <Input type="email" name="entry.email" id="entry.email" placeholder="john@email.com" required />
+                            <Input type="email" name="entry.email" id="entry.email" placeholder="john@email.com" required className="text-base" />
                         </div>
                         <div className="grid w-full items-center gap-3">
                             <Label htmlFor="entry.message">Message</Label>
-                            <Textarea name="entry.message" id="entry.message" placeholder="Type your message here." required />
+                            <Textarea name="entry.message" id="entry.message" placeholder="Type your message here." required className="text-base" />
                         </div>
                     </div>
                     <DialogFooter>
