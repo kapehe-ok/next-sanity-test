@@ -6,21 +6,17 @@ export default function Home() {
     <div className="flex flex-col h-screen gap-3 m-5 text-md">
       {/* Use the Link component for client-side navigation */}
       <p>Master any topic playing <Link href="/education" className="text-blue-500 underline">here</Link>.</p>
-      <p>Birthday: 26/05/2001</p>
-      <p>Nationality: Peruvian</p>
-      <p>Residency: San Francisco, CA, USA</p>
-      <p>Work</p>
-      <p>Axeom</p>
-      <p>Dudda</p>
-      <p>Alegra</p>
-      <p>Education</p>
-      <p>California State University, East Bay</p>
-      <p>Universidad del Pacífico</p>
-      <p>Projects</p>
-      <p>Bhuma AI</p>
-      <p>Managent</p>
-      <p>Dudda</p>
-      <p>AI Tutor</p>
+      <p className="text-lg">About Me</p>
+      <p>
+        I was born and raised in Lima, Peru. I studied Economics & Finance for four years at Universidad del Pacífico,
+        but dropped out at the beginning of 2023 - on my last year. After gaining traction with my first startup idea,
+        I arrived to the conclusion that I wanted to focus on education as a problem and I didn&apos;t felt that
+        college was the route for me. Eventually, the startup failed, but I managed to convience my parents to transfer
+        to Cal State, East Bay so I could be as close as possible to SF - the biggest tech hub in the world. In 2024, on the 9th
+        of January, I arrived to the States, transferred as an upper division student and worked for a year remotely with software
+        projects. Below, you can see them organized by dates.
+      </p>
+      <p className="text-lg">Projects</p>
     </div>
   );
 }
