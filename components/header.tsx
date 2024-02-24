@@ -16,7 +16,7 @@ const Header = () => {
 
       <div className="relative flex flex-row gap-3 items-center">
         <ModeToggle />
-        <Button variant="ghost" onClick={() => window.open('https://alvropena.beehiiv.com/', '_blank', 'noopener,noreferrer')}>
+        <Button variant="ghost" onClick={() => window.open('https://acornfall.beehiiv.com/subscribe', '_blank', 'noopener,noreferrer')}>
           Newsletter
         </Button>
       </div>
