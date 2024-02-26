@@ -21,7 +21,7 @@ export default function Page() {
     const fetchQuestion = useCallback(async () => {
         setLoading(true);
         try {
-            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/generate-question/`, {
+            const response = await fetch('http://143.244.186.89/generate-question/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -60,7 +60,7 @@ export default function Page() {
             // User has answered, fetch feedback
             setLoading(true);
             try {
-                const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/evaluate-answer/`, {
+                const response = await fetch('http://143.244.186.89/evaluate-answer/', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
