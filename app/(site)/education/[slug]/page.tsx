@@ -2,8 +2,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
-import { Badge } from '@/components/ui/badge';
-import { toast } from "sonner"
+import { Progress } from '@/components/ui/progress';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft } from 'lucide-react';
 import { FeedbackDialog } from '@/components/feedback-dialog';
@@ -16,6 +15,7 @@ export default function Page() {
     const [feedback, setFeedback] = useState('');
     const [loading, setLoading] = useState(true);
     const [interactionState, setInteractionState] = useState('answering');
+    const [progress, setProgress] = useState(0);
 
     // Memoize fetchQuestion using useCallback
     const fetchQuestion = useCallback(async () => {
@@ -94,6 +94,7 @@ export default function Page() {
             setInteractionState('answering');
             setFeedback('');
             setUserAnswer('');
+            setProgress((prevProgress) => Math.min(100, prevProgress + 10));
         }
     };
 
@@ -107,12 +108,15 @@ export default function Page() {
 
     return (
         <div className="flex flex-col items-center justify-center min-h-screen p-5">
+            <Progress value={progress} className='w-1/4 mx-auto mb-5' />
             <Button variant="link">
                 <Link href="/education" className="flex flex-row items-center justify-center gap-1">
                     <ArrowLeft size={16} />
                     <p className="text-md">Return</p>
                 </Link>
             </Button>
+
+
 
             <p className="text-xl">You are currently learning <strong>{slug}</strong>.</p>
             <div className="text-lg mt-5 text-center">{currentQuestion || 'Loading question...'}</div>

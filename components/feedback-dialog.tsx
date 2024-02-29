@@ -42,17 +42,15 @@ export function FeedbackDialog() {
         }
     };
 
-
-
     return (
         <Dialog>
             <DialogTrigger asChild>
-                <Button variant="link">Give Feedback</Button>
+                <Button variant="link">Help us improve!</Button>
             </DialogTrigger>
             <form action={formAction} method="POST" onSubmit={handleSubmit}>
                 <DialogContent>
                     <DialogHeader>
-                        <DialogTitle>Tell us what you think!</DialogTitle>
+                        <DialogTitle>What would you like us to change?</DialogTitle>
                         <DialogDescription>
                             We will love to hear from you. Share your thoughts, please.
                         </DialogDescription>
@@ -60,11 +58,11 @@ export function FeedbackDialog() {
                     <div className="grid gap-4 py-4">
                         {/* Adjust field names and IDs */}
                         <div className="grid w-full items-center gap-3">
-                            <Label htmlFor="entry.name">Name (Optional)</Label>
+                            <Label htmlFor="entry.name">Name</Label>
                             <Input type="text" name="entry.name" id="entry.name" placeholder="John Smith" required className="text-base" />
                         </div>
                         <div className="grid w-full items-center gap-3">
-                            <Label htmlFor="entry.email">Email (Optional)</Label>
+                            <Label htmlFor="entry.email">Email</Label>
                             <Input type="email" name="entry.email" id="entry.email" placeholder="john@email.com" required className="text-base" />
                         </div>
                         <div className="grid w-full items-center gap-3">
