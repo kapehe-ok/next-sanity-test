@@ -1,24 +1,26 @@
 "use client";
 import React from "react";
 import { GitHubLogoIcon, LinkedInLogoIcon, TwitterLogoIcon } from "@radix-ui/react-icons";
+import { Button } from "./ui/button";
+import Link from 'next/link'
 
 const Footer = () => {
   return (
-    <footer className="flex flex-row items-center justify-between m-5 pb-5">
-      <div className="flex flex-row gap-3">
-        <a href="https://www.linkedin.com/in/alvropena/" target="_blank" rel="noopener noreferrer">
+    <footer className="flex flex-row justify-between py-6 w-full shrink-0 items-center px-4 md:px-6 border-t">
+      <nav className="flex flex-row gap-3">
+        <Button variant="ghost" onClick={() => window.open('https://www.linkedin.com/in/alvropena/')}>
           <LinkedInLogoIcon />
-        </a>
-        <a href="https://github.com/alvropena" target="_blank" rel="noopener noreferrer">
+        </Button>
+        <Button variant="ghost" onClick={() => window.open('https://github.com/alvropena')}>
           <GitHubLogoIcon />
-        </a>
-        <a href="https://www.x.com/alvropenaa" target="_blank" rel="noopener noreferrer">
+        </Button>
+        <Button variant="ghost" onClick={() => window.open('https://www.x.com/alvropenaa')}>
           <TwitterLogoIcon />
-        </a>
-      </div>
-      <a href="mailto:me@alvropena.com" className="text-blue-500 text-sm">
-        me@alvropena.com
-      </a>
+        </Button>
+      </nav>
+      <Button variant="link" onClick={() => window.open('https://github.com/alvropena/my-website.git')}>
+        Source
+      </Button>
     </footer>
   );
 };

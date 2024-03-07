@@ -30,7 +30,7 @@ export default function Page() {
                     messages: [
                         {
                             role: "system",
-                            content: `Generate a compelling quiz question about ${slug}. You are a creative and helpful question and answer generator. Create a single multiple-choice question about ${slug} that's engaging and interesting for those interested in learning about the topic. Ensure the question format is concise, clear, and entertaining. Provide four options (A, B, C, D) without revealing the correct answer. Aim for questions that provoke thought and interest.`,
+                            content: `Generate a compelling quiz question about ${slug}. You are a creative and helpful question and answer generator. Create a single multiple-choice question about ${slug} that's engaging and interesting for those interested in learning about the topic. Ensure the question format is concise, clear, and entertaining. Provide four options (A, B, C, D) without revealing the correct answer. Aim for questions that provoke thought and interest. Do not include "" in the next nor /n for indentation, retrieve it as a sentence with the options.`,
                         },
                         {
                             role: "user",

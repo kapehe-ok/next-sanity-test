@@ -1,11 +1,13 @@
-"use client";
-import Link from "next/link"; // Import the Link component
+import Projects from "@/components/projects";
+import AboutMe from "@/components/about-me";
+import ContactForm from "@/components/contact-form";
 
 export default function Home() {
   return (
-    <div className="flex flex-col h-screen gap-3 m-5 text-md">
-      {/* Use the Link component for client-side navigation */}
-      <p>Master any topic playing <Link href="/education" className="text-blue-500 underline">here</Link>.</p>
+    <div className="flex flex-col min-h-[100dvh] flex-1 py-6 lg:py-12 divide-y">
+      <AboutMe />
+      <Projects />
+      <ContactForm />
     </div>
   );
 }

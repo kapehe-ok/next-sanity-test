@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button"
 import {
     Dialog,
+    DialogClose,
     DialogContent,
     DialogDescription,
     DialogFooter,
@@ -12,47 +13,66 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { useToast } from "@/components/ui/use-toast"
+import { Toaster } from "@/components/ui/toaster"
 
 export function FeedbackDialog() {
-    // URL to submit the form. Replace with your Google Form action URL
-    const formAction = "https://script.google.com/macros/s/AKfycbxyoUXUs6NuCMXKrGpYWghdHFa3-6rYqU_FGTdwbzILWYawmLClilPEaIIxZkI5o0WJ/exec";
-    const { toast } = useToast();
+    const { toast } = useToast()
 
-    const handleSubmit = async () => {
-        const formElement = document.querySelector('form'); // This might return null if the form is not found
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
 
-        // Check if formElement is not null before proceeding
-        if (formElement === null) {
-            console.error('Form element not found');
-            return; // Exit the function if form is not found
-        }
+        // Collect form data with type assertion
+        const nameElement = document.getElementById('entry.name') as HTMLInputElement;
+        const emailElement = document.getElementById('entry.email') as HTMLInputElement;
+        const messageElement = document.getElementById('entry.message') as HTMLTextAreaElement;
 
-        const formData = new FormData(formElement);
+        // Now you can safely access the `value` property
+        const formData = {
+            name: nameElement.value,
+            email: emailElement.value,
+            message: messageElement.value,
+        };
 
         try {
-            await fetch(formAction, {
+            const response = await fetch('http://localhost:8000/submit-feedback/', { // Replace with your FastAPI URL
                 method: 'POST',
-                body: formData,
-                mode: 'no-cors',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
             });
-            console.log('Feedback submitted successfully!');
-            // Toast is shown inside the onClick, so it's removed from here
+
+            const data = await response.json();
+
+            if (response.ok) {
+                toast({
+                    title: 'Thank you for submitting your feedback!',
+                    description: 'We will contact you at your email address.',
+                });
+            } else {
+                throw new Error(data.detail || 'An unknown error occurred');
+            }
         } catch (error) {
-            console.error('Submission failed', error);
+            toast({
+                title: 'Submission failed',
+                description: error.toString(),
+            });
         }
     };
+
+
 
     return (
         <Dialog>
             <DialogTrigger asChild>
                 <Button variant="link">Help us improve!</Button>
             </DialogTrigger>
-            <form action={formAction} method="POST" onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit}>
                 <DialogContent>
                     <DialogHeader>
-                        <DialogTitle>What would you like us to change?</DialogTitle>
+                        <DialogTitle>How can we improve?</DialogTitle>
                         <DialogDescription>
-                            We will love to hear from you. Share your thoughts, please.
+                            Please, we will love to hear what you think. Share what you think with us and we&apos;ll reach back as soon as possible.
                         </DialogDescription>
                     </DialogHeader>
                     <div className="grid gap-4 py-4">
@@ -71,14 +91,9 @@ export function FeedbackDialog() {
                         </div>
                     </div>
                     <DialogFooter>
-                        <Button type="submit" onClick={(e) => {
-                            e.preventDefault(); // Prevent default form submission
-                            toast({
-                                title: 'Thank you for submitting your feedback!',
-                                description: 'We will contact you to your email address.'
-                            });
-                            handleSubmit(); // Then submit the form data
-                        }}>Submit</Button>
+                        <DialogClose asChild>
+                            <Button type="submit">Submit</Button>
+                        </DialogClose>
                     </DialogFooter>
                 </DialogContent>
             </form>
