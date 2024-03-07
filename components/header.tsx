@@ -15,13 +15,14 @@ const Header = () => {
           </h1>
         </div>
 
-        {/* Navigation Links in the center, flex-grow allows the nav to take up max available space */}
+        {/* Navigation Links in the center, flex-grow allows the nav to take up max available space 
         <nav className="flex-grow flex justify-center gap-2 sm:gap-4 lg:gap-6">
           <Link href="#" className="text-sm font-medium hover:underline underline-offset-4">About</Link>
           <Link href="#" className="text-sm font-medium hover:underline underline-offset-4">Projects</Link>
           <Link href="https://alvropena.beehiiv.com/subscribe" className="text-sm font-medium hover:underline underline-offset-4">Newsletter</Link>
           <Link href="#" className="text-sm font-medium hover:underline underline-offset-4">Contact</Link>
         </nav>
+        */}
 
         {/* ModeToggle on the right, flex-end aligns it to the right */}
         <div className="flex-1 flex justify-end items-center">
