@@ -1,6 +1,13 @@
 import React from 'react';
 import { Label } from "@/components/ui/label";
-import { Select } from "@/components/ui/select";
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select"
+
 import { Card, CardTitle, CardDescription, CardHeader, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowRightIcon, Code, FilterIcon } from 'lucide-react';
@@ -65,14 +72,15 @@ export default function Projects() {
                 {/* Projects Filter */}
                 <div className="flex flex-col min-[400px]:flex-row gap-4">
                     <div className="w-full flex items-center gap-2 md:gap-4">
-                        <Label className="min-w-[100px]" htmlFor="filter">
-                            <FilterIcon />
-                            Filter
-                        </Label>
-                        <Select id="filter" placeholder="Technology">
-                            <option>Web</option>
-                            <option>Mobile</option>
-                            <option>ML/AI</option>
+                        <Select>
+                            <SelectTrigger className="w-[180px]">
+                                <SelectValue placeholder="Filter" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectItem value="light">Web</SelectItem>
+                                <SelectItem value="dark">Mobile</SelectItem>
+                                <SelectItem value="system">ML/AI</SelectItem>
+                            </SelectContent>
                         </Select>
                     </div>
                 </div>
@@ -86,6 +94,7 @@ export default function Projects() {
                             lastUpdated={project.lastUpdated}
                             branchName={project.branchName}
                             commitMessage={project.commitMessage}
+                            onViewClick={() => { }}
                         />
                     ))}
                 </div>
