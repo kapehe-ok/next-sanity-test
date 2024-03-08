@@ -41,7 +41,7 @@ function ProjectCard({ title, description, onViewClick, commitMessage, lastUpdat
                         <span>{branchName}</span>
                     </div>
                 </div>
-                <Link href={''}>Source</Link>
+
             </CardContent>
         </Card>
     );
