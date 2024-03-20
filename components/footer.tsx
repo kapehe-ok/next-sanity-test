@@ -3,6 +3,7 @@ import React from "react";
 import { GitHubLogoIcon, LinkedInLogoIcon, TwitterLogoIcon } from "@radix-ui/react-icons";
 import { Button } from "./ui/button";
 import Link from 'next/link'
+import { ModeToggle } from "./mode-toggle";
 
 const Footer = () => {
   return (
@@ -18,9 +19,13 @@ const Footer = () => {
           <TwitterLogoIcon />
         </Button>
       </nav>
-      <Button variant="link" onClick={() => window.open('https://github.com/alvropena/my-website.git')}>
-        Source
-      </Button>
+      <div className="flex-1 flex justify-end items-center">
+        <Button variant="link" onClick={() => window.open('https://github.com/alvropena/my-website.git')}>
+          Source
+        </Button>
+
+        <ModeToggle />
+      </div>
     </footer>
   );
 };

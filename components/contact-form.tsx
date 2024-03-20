@@ -1,10 +1,64 @@
-import React from 'react'
+"use client"
+
+import React, { useState } from 'react'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
+import { useToast } from '@/components/ui/use-toast'
 
 export default function ContactForm() {
+    const { toast } = useToast()
+    // State for form fields
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        message: '',
+    });
+
+    // Update form state
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData(prevState => ({
+            ...prevState,
+            [name]: value,
+        }));
+    };
+
+    // Handle form submission
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
+        try {
+            const response = await fetch('/api/send', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    firstName: formData.name, // Assuming firstName is the correct field
+                    email: formData.email,
+                    message: formData.message,
+                }),
+            });
+
+            toast({
+                title: "Uh oh! Something went wrong.",
+                description: "There was a problem with your request.",
+            })
+
+
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
+            // Handle success (e.g., clear form, show message)
+            console.log('Email sent successfully');
+        } catch (error) {
+            console.error('Failed to send email:', error);
+        }
+    };
+
     return (
         <section className="py-6 lg:py-12" id="contact">
             <div className="container px-4 md:px-6">
@@ -18,18 +72,18 @@ export default function ContactForm() {
                     </div>
                 </div>
                 <div className="mx-auto max-w-[600px] space-y-8">
-                    <form className="grid gap-4">
+                    <form className="grid gap-4" onSubmit={handleSubmit}>
                         <div className="grid gap-2">
                             <Label htmlFor="name">Name</Label>
-                            <Input id="name" required />
+                            <Input id="name" name="name" required onChange={handleChange} value={formData.name} />
                         </div>
                         <div className="grid gap-2">
                             <Label htmlFor="email">Email</Label>
-                            <Input id="email" required type="email" />
+                            <Input id="email" name="email" required type="email" onChange={handleChange} value={formData.email} />
                         </div>
                         <div className="grid gap-2">
                             <Label htmlFor="message">Message</Label>
-                            <Textarea id="message" required />
+                            <Textarea id="message" name="message" required onChange={handleChange} value={formData.message} />
                         </div>
                         <Button type="submit">Submit</Button>
                     </form>

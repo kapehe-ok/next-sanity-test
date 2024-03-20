@@ -1,4 +1,6 @@
 import React from 'react'
+import { Button } from './ui/button'
+import { ArrowRightIcon } from '@radix-ui/react-icons'
 
 export default function AboutMe() {
     return (
@@ -7,23 +9,28 @@ export default function AboutMe() {
                 <div className="mx-auto grid max-w-5xl items-center gap-6 lg:grid-cols-2 lg:gap-12">
                     <div className="flex flex-col justify-center space-y-4">
                         <div className="space-y-2">
-                            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl xl:text-5xl/none">About Me</h2>
+                            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl xl:text-6xl/none">Machine Learning Engineer</h2>
                             <p className="">
-                                I&apos;m a software engineer with a love for clean code and elegant solutions. My journey in
-                                tech started with a curiosity about how things work, and it has led me to become a dedicated
-                                developer who is always seeking to learn and grow.
+                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.
                             </p>
                         </div>
-                        <div className="grid gap-1">
-
-                            <p className="text-sm">
-                                <>Languages</> JavaScript, Python, C++, Swift
-                            </p>
-
-                            <p className="text-sm">
-                                Frameworks: React, FastAPI
-                            </p>
+                        <div>
+                            <p>More than 500 hours coding!</p>
                         </div>
+                        <Button>
+                            Let&apos;s Talk
+                            <ArrowRightIcon />
+                        </Button>
+                    </div>
+                    <div>
+                        <iframe
+                            width="560"
+                            height="315"
+                            src="https://www.youtube.com/embed/UOPsH4yJqps?si=56h8LWQCzWOquEQe"
+                            title="YouTube video player"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowFullScreen>
+                        </iframe>
                     </div>
                 </div>
             </div>
